@@ -13,7 +13,8 @@ end
 
 @ctypedef CURL Union{}
 @ctypedef curl_socket_t Int32
-type curl_httppost
+@ctypedef Void Cvoid
+struct curl_httppost
   next::Ptr{Void}
   name::Ptr{UInt8}
   namelength::Int32
@@ -42,7 +43,7 @@ const CURLFILETYPE_DOOR = 7
 const CURLFILETYPE_UNKNOWN = 8
 # end
 @ctypedef curlfiletype Int32
-type curl_fileinfo
+struct curl_fileinfo
   filename::Ptr{UInt8}
   filetype::curlfiletype
   time::time_t
@@ -68,7 +69,7 @@ const CURLSOCKTYPE_LAST = 1
 # end
 @ctypedef curlsocktype Int32
 @ctypedef curl_sockopt_callback Ptr{Void}
-type curl_sockaddr
+struct curl_sockaddr
   family::Int32
   socktype::Int32
   protocol::Int32
@@ -212,7 +213,7 @@ const CURLPROXY_SOCKS4A = 6
 const CURLPROXY_SOCKS5_HOSTNAME = 7
 # end
 @ctypedef curl_proxytype Int32
-type curl_khkey
+struct curl_khkey
   key::Ptr{UInt8}
   len::size_t
   keytype::Int32
@@ -520,7 +521,7 @@ const CURLFORM_STREAM = 19
 const CURLFORM_LASTENTRY = 20
 # end
 @ctypedef CURLformoption Int32
-type curl_forms
+struct curl_forms
   option::CURLformoption
   value::Ptr{UInt8}
 end
@@ -537,11 +538,11 @@ const CURL_FORMADD_LAST = 8
 # end
 @ctypedef CURLFORMcode Int32
 @ctypedef curl_formget_callback Ptr{Void}
-type curl_slist
+struct curl_slist
   data::Ptr{UInt8}
   next::Ptr{Void}
 end
-type curl_certinfo
+struct curl_certinfo
   num_of_certs::Int32
   certinfo::Ptr{Ptr{Void}}
 end
@@ -650,7 +651,7 @@ const CURLVERSION_FOURTH = 3
 const CURLVERSION_LAST = 4
 # end
 @ctypedef CURLversion Int32
-type curl_version_info_data
+struct curl_version_info_data
   age::CURLversion
   version::Ptr{UInt8}
   version_num::UInt32
@@ -685,7 +686,7 @@ const CURLMSG_DONE = 1
 const CURLMSG_LAST = 2
 # end
 @ctypedef CURLMSG Int32
-type CURLMsg
+struct CURLMsg
   msg::CURLMSG
   easy_handle::Ptr{CURL}
   data::Void
